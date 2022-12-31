@@ -6,6 +6,7 @@ import {
   HttpException,
   InternalServerErrorException,
   Logger,
+  HttpStatus,
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { Observable, throwError } from 'rxjs';
@@ -49,8 +50,9 @@ export class ResponseInterceptor<T> implements NestInterceptor<T, Response<T>> {
           return throwError(() => {
             logger.error(error.message, error.stack);
 
-            new HttpException(
+            return new HttpException(
               {
+                statusCode: error.status,
                 success: false,
                 message: error.message,
                 stack: error.stack,
@@ -64,11 +66,13 @@ export class ResponseInterceptor<T> implements NestInterceptor<T, Response<T>> {
         return throwError(() => {
           logger.error(error.message, error.stack);
 
-          new InternalServerErrorException(
+          return new InternalServerErrorException(
             {
+              statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
               success: false,
               message: error.message,
               stack: error.stack,
+              error: error,
             },
             error.status,
           );
