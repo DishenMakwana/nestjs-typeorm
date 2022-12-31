@@ -84,7 +84,10 @@ export class AuthService {
         throw new BadRequestException(message.user.MOBILE_NUMBER_ALREADY_EXIST);
     }
 
-    const hashedPassword = await bcryptjs.hash(password, 10);
+    const hashedPassword = await bcryptjs.hash(
+      password,
+      +this.configService.get<number>('BCRYPT_ROUNDS'),
+    );
 
     user = await this.userRepository.save({
       first_name: firstName,
@@ -93,6 +96,7 @@ export class AuthService {
       email,
       mobile,
       password: hashedPassword,
+      role_id: RoleType.user,
     });
 
     await this.sendEmail(email);
