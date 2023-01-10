@@ -2,7 +2,6 @@ import { Module } from '@nestjs/common';
 import { UserModule } from './user/user.module';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
-import { HelperModule } from './helper/helper.module';
 import { MailModule } from './mail/mail.module';
 import { AwsModule } from './aws/aws.module';
 import { FileModule } from './file/file.module';
@@ -47,7 +46,6 @@ import * as path from 'path';
     }),
     UserModule,
     AuthModule,
-    HelperModule,
     MailModule,
     AwsModule,
     FileModule,

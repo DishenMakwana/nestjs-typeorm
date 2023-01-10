@@ -7,7 +7,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
-import { HelperService } from '../helper/helper.service';
 import { RoleType } from '../common/types';
 import { message } from '../common/assets';
 import * as bcryptjs from 'bcryptjs';
@@ -26,7 +25,6 @@ export class AuthService {
     @InjectRepository(Code) private readonly codeRepository: Repository<Code>,
     private readonly jwtService: JwtService,
     private readonly userTransformer: UserTransformer,
-    private readonly helper: HelperService,
     private readonly mailService: MailService,
     private readonly configService: ConfigService,
   ) {}
@@ -140,7 +138,7 @@ export class AuthService {
       throw new ForbiddenException(message.user.ALREADY_VERIFY_EMAIL);
     }
 
-    const code = this.helper.randomString(25);
+    const code = Math.floor(Math.random() * (9999 - 1000) + 1000).toString();
 
     // upsert in typeorm
 
