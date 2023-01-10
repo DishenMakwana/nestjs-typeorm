@@ -17,6 +17,7 @@ import {
   RegisterDto,
   ResendEmailDto,
   ResetPasswordDto,
+  UpsertDto,
   VerifyOtpDto,
 } from './dto/auth.dto';
 import { RoleType } from '../common/types';
@@ -112,5 +113,12 @@ export class AuthController {
   @Post('internalization')
   async internalization(@I18n() i18n: I18nContext) {
     return i18n.t('test.HELLO');
+  }
+
+  @SuccessMessage(message.user.SUCCESS_REGISTER)
+  @ApiSummary(apiDesc.auth.register)
+  @Post('upsert')
+  async internalizationWithLang(@Body() body: UpsertDto) {
+    return this.authService.userUpsert(body);
   }
 }

@@ -13,6 +13,8 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
       schema: this.configService.get('TYPEORM_SCHEMA'),
       entities: [__dirname + '/../**/*.entity{.ts,.js}'],
       migrations: [__dirname + '/migrations/**/*{.ts,.js}'],
+      seeders: [this.configService.get('TYPEORM_SEEDING_SEEDS')],
+      factories: [this.configService.get('TYPEORM_SEEDING_FACTORIES')],
       synchronize: this.configService.get('TYPEORM_SYNCHRONIZE') === 'true',
       logging: this.configService.get('TYPEORM_LOGGING') === 'true',
       extra: {

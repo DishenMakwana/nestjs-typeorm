@@ -272,4 +272,19 @@ export class AuthService {
       access_token: at,
     };
   }
+
+  async userUpsert(body: any) {
+    await this.codeRepository.upsert(
+      {
+        user_id: body.user_id,
+        code: body.code,
+      },
+      {
+        conflictPaths: ['user_id'],
+        skipUpdateIfNoValuesChanged: true,
+      },
+    );
+
+    return true;
+  }
 }
