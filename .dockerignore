@@ -2,3 +2,8 @@
 **/node_modules
 **/build
 **/.env
+**/CHANGELOG.md
+**/changelog-template.hbs
+**/README.md
+**/scripts
+**/VERSION

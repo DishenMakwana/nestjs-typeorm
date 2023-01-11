@@ -10,6 +10,7 @@
     "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "./",
+    "rootDir": ".", // add this to generate src folder build inside dist as it is.
     "incremental": true,
     "skipLibCheck": true,
     "strictNullChecks": false,
