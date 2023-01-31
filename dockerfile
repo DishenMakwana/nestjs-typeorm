@@ -17,11 +17,11 @@ ENV NODE_OPTIONS="--max_old_space_size=4096"
 
 RUN yarn run build
 
-# run node prune
-RUN /usr/local/bin/node-prune
-
 # RUN npm prune --production
 RUN yarn install --production --ignore-scripts --prefer-offline
+
+# run node prune
+RUN /usr/local/bin/node-prune
 
 # remove unused dependencies
 RUN rm -rf node_modules/rxjs/src/
