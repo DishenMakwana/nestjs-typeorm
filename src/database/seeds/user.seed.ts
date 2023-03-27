@@ -1,6 +1,6 @@
 import { Seeder } from 'typeorm-extension';
 import { DataSource } from 'typeorm';
-import { User } from '../../user/entities';
+import { User } from '../entities';
 
 export default class UserSeeder implements Seeder {
   public async run(dataSource: DataSource): Promise<any> {
@@ -19,5 +19,7 @@ export default class UserSeeder implements Seeder {
         role_id: 1,
       },
     ]);
+
+    console.log('User seeded successfully.');
   }
 }

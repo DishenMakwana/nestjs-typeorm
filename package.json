@@ -32,14 +32,14 @@
     "schema:sync": "yarn run typeorm schema:sync",
     "schema:drop": "yarn run typeorm schema:drop",
     "schema:log": "yarn run typeorm schema:log",
+    "seed:run": "ts-node ./node_modules/typeorm-extension/dist/cli/index.js -d src/database/data-source.ts seed",
     "migration:run:prod": "yarn run typeorm:prod migration:run",
     "migration:revert:prod": "yarn run typeorm:prod migration:revert",
     "migration:show:prod": "yarn run typeorm:prod migration:show",
     "schema:sync:prod": "yarn run typeorm:prod schema:sync",
     "schema:drop:prod": "yarn run typeorm:prod schema:drop",
     "schema:log:prod": "yarn run typeorm:prod schema:log",
-    "seed:run:prod": "ts-node ./node_modules/typeorm-extension/dist/cli/index.js -d dist/src/database/data-source.js seed",
-    "seed:run": "ts-node ./node_modules/typeorm-extension/dist/cli/index.js -d src/database/data-source.ts seed"
+    "seed:run:prod": "node ./node_modules/typeorm-extension/dist/cli/index.js -d dist/src/database/data-source.js seed"
   },
   "dependencies": {
     "@nestjs-modules/mailer": "^1.8.1",

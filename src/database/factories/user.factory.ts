@@ -1,5 +1,5 @@
 import { setSeederFactory } from 'typeorm-extension';
-import { User } from '../../user/entities';
+import { User } from '../entities';
 
 export default setSeederFactory(User, (faker) => {
   const user = new User();

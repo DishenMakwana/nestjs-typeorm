@@ -20,7 +20,7 @@ import { HttpExceptionFilter } from './common/filters/bad-request.filter';
 
 async function bootstrap() {
   // Logger
-  const logger: Logger = new Logger('NestJS App');
+  const logger: Logger = new Logger(process.env.APP_NAME);
 
   // Create NestJS App
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
@@ -44,7 +44,7 @@ async function bootstrap() {
   // Versioning
   app.enableVersioning({
     type: VersioningType.URI,
-    // defaultVersion: '1',
+    defaultVersion: '1',
     prefix: 'v',
   });
 
@@ -109,10 +109,11 @@ async function bootstrap() {
     app.enableCors();
   }
 
-  await app.listen(configService.get<number>('PORT'));
+  await app.listen(configService.get<number>('PORT') || 5000, '0.0.0.0');
 
+  logger.debug(`Application is running on: ${await app.getUrl()}`);
   logger.debug(
-    `Server is running on port ${configService.get<number>('PORT') || 5000}`,
+    `Swagger docs: ${configService.get<string>('API_BASE_URL')}${docPath}`,
   );
 }
 

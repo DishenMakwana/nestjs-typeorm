@@ -3,7 +3,7 @@ import { UserTransformer } from './user.transformer';
 import { AuthUserType } from '../common/types';
 import * as bcryptjs from 'bcryptjs';
 import { InjectRepository } from '@nestjs/typeorm';
-import { User } from './entities';
+import { User } from '../database/entities';
 import { Repository } from 'typeorm';
 
 @Injectable()

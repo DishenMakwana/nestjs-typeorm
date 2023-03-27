@@ -11,7 +11,7 @@ import { RoleType } from '../common/types';
 import { message } from '../common/assets';
 import * as bcryptjs from 'bcryptjs';
 import { MailService } from '../mail/mail.service';
-import { Code, User } from '../user/entities';
+import { Code, User } from '../database/entities';
 import { UserTransformer } from '../user/user.transformer';
 
 export type Tokens = {

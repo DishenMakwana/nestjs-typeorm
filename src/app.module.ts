@@ -15,13 +15,6 @@ import * as path from 'path';
 
 @Module({
   imports: [
-    TypeOrmModule.forRootAsync({
-      useClass: TypeOrmConfigService,
-      dataSourceFactory: async (options) => {
-        const dataSource = await new DataSource(options).initialize();
-        return dataSource;
-      },
-    }),
     ConfigModule.forRoot({
       isGlobal: true,
       cache: true,
@@ -32,6 +25,13 @@ import * as path from 'path';
         './.env.stag',
         './.env.test',
       ],
+    }),
+    TypeOrmModule.forRootAsync({
+      useClass: TypeOrmConfigService,
+      dataSourceFactory: async (options) => {
+        const dataSource = await new DataSource(options).initialize();
+        return dataSource;
+      },
     }),
     I18nModule.forRoot({
       fallbackLanguage: 'en',
