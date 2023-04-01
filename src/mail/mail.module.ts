@@ -15,10 +15,12 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
           host: configService.get<string>('MAIL_HOST'),
           port: configService.get<number>('MAIL_PORT'),
           secure: configService.get<boolean>('MAIL_SECURE') === true,
+          ignoreTLS: configService.get<boolean>('MAIL_IGNORE_TLS') === true,
           auth: {
             user: configService.get<string>('MAIL_USER'),
             pass: configService.get<string>('MAIL_PASSWORD'),
           },
+          logger: configService.get<boolean>('MAIL_LOGGER') === true,
         },
         defaults: {
           from: configService.get<string>('MAIL_FROM'),
