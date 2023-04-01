@@ -18,13 +18,7 @@ import * as path from 'path';
     ConfigModule.forRoot({
       isGlobal: true,
       cache: true,
-      envFilePath: [
-        './.env',
-        './.env.dev',
-        './.env.prod',
-        './.env.stag',
-        './.env.test',
-      ],
+      envFilePath: ['./.env'],
     }),
     TypeOrmModule.forRootAsync({
       useClass: TypeOrmConfigService,
